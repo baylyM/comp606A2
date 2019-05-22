@@ -7,10 +7,13 @@
 --construct_user
 --change_password
 --getName
+--getPostedJobs
+
 	----Job
 	----construct_job
 	----close_job
 	----choose_worker
+  ----accept_estimate
 	----send_message
 
 
@@ -19,6 +22,7 @@
 --construct_user
 --change_password
 --getName
+--getPostedEstimates
 ------Estimate
 	----construct_estimate
 	----close_estimate
@@ -57,7 +61,8 @@ description text,
 expectedcost decimal(4,2),
 startdate date,
 enddate date,
-tradesmenid int
+tradesmenid int,
+accepted boolean
 )
 
 
@@ -69,7 +74,8 @@ totalcost decimal(4,2),
 laborcost decimal(4,2),
 materialscost decimal(4,2),
 transportcost decimal(4,2),
-expiredate date
+expiredate date,
+accepted boolean
 )
 
 CREATE TABLE message(

@@ -35,7 +35,7 @@
 
 CREATE TABLE customers(
 customerid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-customerName varcher(100),
+customerName varcher(100) UNIQUE,
 username varchar(20),
 password varchar(20),
 email varchar(50)

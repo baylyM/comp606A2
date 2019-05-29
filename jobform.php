@@ -3,19 +3,19 @@
 <html>
 <head>
   <!--title of page-->
-  <title>Job Description</title>
+  <title>Create Job</title>
   <link rel="stylesheet" type="text/css" href="formstyle.css">
 </head>
 <body>
   <!--block at top of form-->
   <div class="header">
     <!--title of form-->
-  	<h2>Job Description</h2>
+  	<h2>Create Job</h2>
   </div>
   <!--form-->
   <form method="post" action="jobform.php">
- 
-  	
+
+
     <!--input group used as class name as it is vauge
         enough to use for all instances and input was
         better used for input line itself-->
@@ -43,12 +43,12 @@
   		<label>End Date</label>
   		<input type="date" name="enddate">
   	</div>
-	
+
   	<div class="input-group">
       <!--Submits form values-->
-  		<button type="submit" class="btn" name="login_user">Login</button>
+  		<button type="submit" class="btn" name="create_job">Submit Job</button>
 
-      <button type=submit  class="btn"><a href="index.php">Back Home page</a></button>
+      <button type=submit  class="btn"><a href="index.php">Back to Home page</a></button>
   	</div>
   </form>
 </body>

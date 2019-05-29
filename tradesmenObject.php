@@ -4,7 +4,7 @@
     private $tradesmenName;
     private $username;
     private $password;
-    private $menemail;
+    private $email;
 
     public function __construct($tradesmenName, $username, $password, $email){
       $this->tradesmenName = $customerName;
@@ -21,26 +21,21 @@
       $this->tradesmenid = $result;
     }
 
-    public function changePassword($password){
-    if (isStrongPassword($password)){
-      $this->password = $password;
-      return true;
-    } else {
-      return false;
+    public function getValues($username){
+      $query = "SELECT tradesmenid FROM tradesmen WHERE username == $username" ;
+      $result = mysqli_query($db, $query);
+      $this->tradesmenid = $result;
+      $query = "SELECT tradesmenName FROM tradesmen WHERE username == $username" ;
+      $result = mysqli_query($db, $query);
+      $this->tradesmenName = $result;
+      $query = "SELECT username FROM tradesmen WHERE username == $username" ;
+      $result = mysqli_query($db, $query);
+      $this->username = $result;
+      $query = "SELECT password FROM tradesmen WHERE username == $username" ;
+      $result = mysqli_query($db, $query);
+      $this->password = $result;
+      $query = "SELECT email FROM tradesmen WHERE username == $username" ;
+      $result = mysqli_query($db, $query);
+      $this->email = $result;
     }
-  }
-
-  public function getName(){
-      return $this->tradesmenName;
-  }
-
-  public function getUsername(){
-      return $this->username;
-  }
-
-  public function getPassword(){
-      return $this->password;
-  }
-
-  }
   ?>

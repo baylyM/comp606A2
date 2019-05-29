@@ -21,30 +21,21 @@ class Customer {
 
   }
 
-  public function changePassword($password){
-    if (isStrongPassword($password)){
-      $this->password = $password;
-      return true;
-    } else {
-      return false;
-    }
+  public function getValues($username){
+    $query = "SELECT customerid FROM customers WHERE username == $username" ;
+    $result = mysqli_query($db, $query);
+    $this->customerid = $result;
+    $query = "SELECT customerName FROM customers WHERE username == $username" ;
+    $result = mysqli_query($db, $query);
+    $this->customerName = $result;
+    $query = "SELECT username FROM customers WHERE username == $username" ;
+    $result = mysqli_query($db, $query);
+    $this->username = $result;
+    $query = "SELECT password FROM customers WHERE username == $username" ;
+    $result = mysqli_query($db, $query);
+    $this->password = $result;
+    $query = "SELECT email FROM customers WHERE username == $username" ;
+    $result = mysqli_query($db, $query);
+    $this->email = $result;
   }
-
-
-  public function getName(){
-      return $this->customerName;
-  }
-
-  public function getUsername(){
-      return $this->username;
-  }
-
-  public function getPassword(){
-      return $this->password;
-  }
-public function getEmail(){
-      return $this->email;
-  }
-}
-
 ?>

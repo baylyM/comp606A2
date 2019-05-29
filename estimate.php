@@ -2,7 +2,7 @@
 
 class job {
 
-  private $estimateidid;
+  private $estimateid;
   private $jobid;
    private $tradesmenid;
   private $totalcost;
@@ -20,8 +20,8 @@ class job {
     $this->transportcost= $transportcost;
     $this->expireddate= $expireddate;
 	$this->accepted=accepted;
-	
-	
+
+
 	$db = mysqli_connect('localhost', 'root', '', 'safetrade');
       $query = "INSERT INTO estimate (tradesmenid, jobid, totalcost, labourcost,materialcost,transportcost,expireddate,accepted) VALUES('$tradesmenid', '$jobid','$totalcost', '$labourcost','$materialcost','$transportcost','$expireddate','$accepted')";
     	mysqli_query($db, $query);
@@ -50,15 +50,15 @@ class job {
 
 	public function closeEstimate()
 	{
-		
+
 	}
 
 	public function sendMessage()
 	{
-		
+
 	}
-	
- 
+
+
 
 }
 

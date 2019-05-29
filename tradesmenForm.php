@@ -23,11 +23,11 @@
         better used for input line itself-->
     <div class="input-group">
       	<label>Name</label>
-      	<input type="text" name="tradesmenname">
+      	<input type="text" name="name">
     </div>
   	<div class="input-group">
   	  <label>Username</label>
-  	  <input type="text" name="name" value="<?php echo $username; ?>">
+  	  <input type="text" name="username" value="<?php echo $username; ?>">
   	</div>
   	<div class="input-group">
   	  <label>Email</label>
@@ -43,11 +43,11 @@
   	</div>
   	<div class="input-group">
       <!--Submits form values-->
-  	  <button type="submit" class="btn" name="reg_appointment">Make Appointment</button>
+  	  <button type="submit" class="btn" name="create_tradesmen">Create User</button>
   	</div>
   	<p>
       <!--changes to Sign In page-->
-  		Want to cancel an Appointment? <a href="cancelbooking.php">Cancel Here</a>
+  		Want to Login <a href="login.php">Login</a>
   	</p>
     <p>
       <!--changes to Sign In page-->

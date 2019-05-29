@@ -17,6 +17,13 @@ class message {
     $this->message= $message;
 	 $this->accepted= $accepted;
    
+   
+   $db = mysqli_connect('localhost', 'root', '', 'safetrade');
+      $query = "INSERT INTO message (username,jobid, trademenid,customerid,message,accepted) VALUES('$username', '$jobid', '$tradesmenid', '$customerid','$message','$accepted')";
+    	mysqli_query($db, $query);
+      $query = "SELECT messageid FROM message WHERE message == $this->message" ;
+      $result = mysqli_query($db, $query);
+      $this->messageid = $result;
   }
 
   public function getUserName(){

@@ -4,7 +4,7 @@
     private $tradesmenName;
     private $username;
     private $password;
-    private $email;
+    private $menemail;
 
     public function __construct($tradesmenName, $username, $password, $email){
       $this->tradesmenName = $customerName;

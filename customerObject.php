@@ -42,7 +42,9 @@ class Customer {
   public function getPassword(){
       return $this->password;
   }
-
+public function getEmail(){
+      return $this->email;
+  }
 }
 
 ?>

@@ -10,7 +10,7 @@ class job {
   private $expectedcost;
   private $startdate;
   private $enddate;
-  private $tradesmanid;
+  private $tradesmenid;
   private $accepted;
 
   public function __construct($jobname,$location,$description,$expextedcost,$startdate,$enddate,$accepted ){

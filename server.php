@@ -111,7 +111,7 @@ if (isset($_POST['login_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
-      $customer.getValues($username);
+      $customer.setValues($username);
   	  header('location: index.php');
   	}elseif{
       if($accountType = "Tradesmen")
@@ -120,7 +120,7 @@ if (isset($_POST['login_user'])) {
     	if (mysqli_num_rows($results) == 1) {
     	  $_SESSION['username'] = $username;
     	  $_SESSION['success'] = "You are now logged in";
-        $tradesman.getValues($username);
+        $tradesman.setValues($username);
     	  header('location: index.php');
       }
       else{
@@ -131,7 +131,6 @@ if (isset($_POST['login_user'])) {
   }
 
 
-// this code is for handling the cancellation form
 if (isset($_POST['create_job'])) {
   $jobname = mysqli_real_escape_string($db, $_POST['jobname']);
   $location = mysqli_real_escape_string($db, $_POST['location']);

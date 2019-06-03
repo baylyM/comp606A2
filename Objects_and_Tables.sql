@@ -52,7 +52,7 @@ email varchar(50)
 )
 
 
-CREATE TABLE job(
+CREATE TABLE jobs(
 jobid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 customerid int,
 jobName varchar(100),
@@ -66,7 +66,7 @@ accepted boolean
 )
 
 
-CREATE TABLE estimate(
+CREATE TABLE estimates(
 estimateid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 tradesmenid int,
 jobid int,

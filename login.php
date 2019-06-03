@@ -41,9 +41,11 @@
   	<div class="input-group">
       <!--Submits form values-->
   		<button type="submit" class="btn" name="login_user">Login</button>
-
-      <button type=submit  class="btn"><a href="index.php">Back Home page</a></button>
   	</div>
+    <p>
+      <!--changes to Sign In page-->
+  		Create Customer Account <a href="customerForm.php">Login</a> Create Tradesmen Account <a href="tradesmenForm.php">Login</a>
+  	</p>
   </form>
 </body>
 </html>

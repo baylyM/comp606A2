@@ -1,10 +1,10 @@
 <?php
 
-class job {
+class Estimate {
 
   private $estimateid;
+  private $tradesmenid;
   private $jobid;
-   private $tradesmenid;
   private $totalcost;
   private $labourcost;
   private $materialcost;
@@ -13,7 +13,7 @@ class job {
   private $accepted;
 
 
-  public function __construct($totalcost,$labourcost,$materialcost,$transportcost,$expireddate,$accepted){
+  public function __construct($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate){
     $this->totalcost = $totalcost;
     $this->labourcost= $labourcost;
 	$this->materialcost= $materialcost;
@@ -23,11 +23,11 @@ class job {
 
 
 	$db = mysqli_connect('localhost', 'root', '', 'safetrade');
-      $query = "INSERT INTO estimate (tradesmenid, jobid, totalcost, labourcost,materialcost,transportcost,expireddate,accepted) VALUES('$tradesmenid', '$jobid','$totalcost', '$labourcost','$materialcost','$transportcost','$expireddate','$accepted')";
+      $query = "INSERT INTO estimates (tradesmenid, jobid, totalcost, labourcost, materialcost, transportcost, expireddate) VALUES('$tradesmenid', '$jobid','$totalcost', '$labourcost','$materialcost','$transportcost','$expireddate')";
     	mysqli_query($db, $query);
-      $query = "SELECT estimateid FROM estimate WHERE tradesmenid == $this->tradesmenid" ;
+      $query = "SELECT estimateid FROM estimates WHERE tradesmenid == $this->tradesmenid AND jobid == $this->jobid" ;
       $result = mysqli_query($db, $query);
-      $this->tradesmenid = $result;
+      $this->etimateid = $result;
   }
 
   public function getTotalCost(){

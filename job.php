@@ -1,10 +1,10 @@
 <?php
 
-class job {
+class Job {
 
   private $jobid;
   private $customerid;
-  private $jobname;
+  private $jobName;
   private $location;
   private $description;
   private $expectedcost;
@@ -13,15 +13,22 @@ class job {
   private $tradesmenid;
   private $accepted;
 
-  public function __construct($jobname,$location,$description,$expextedcost,$startdate,$enddate,$accepted ){
+  public function __construct($customerid, $jobName,$location,$description,$expextedcost,$startdate,$enddate ){
+    $this->customerid = $customerid
     $this->jobname = $jobname;
     $this->location= $location;
 	 $this->description= $description;
     $this->expectedcost= $expectedcost;
 	$this->startdate= $startdate;
     $this->enddate= $enddate;
-	$this->accepted= $accepted;
-	
+
+  $db = mysqli_connect('localhost', 'root', '', 'safetrade');
+  $query = "INSERT INTO jobs (customerid, jobName, location, description, expectedcost, startdate, enddate) VALUES($customerid, $jobName, $location, $description, $expectedcost, $startdate, $enddate)";
+  mysqli_query($db, $query);
+  $query = "SELECT jobid FROM jobs WHERE jobName == $this->jobName" ;
+  $result = mysqli_query($db, $query);
+  $this->jobid = $result;
+
   }
 
   public function getJobName(){
@@ -46,20 +53,20 @@ class job {
   }
 	public function closeJob()
 	{
-		
+
 	}
 	public function chooseWorker()
 	{
-		
+
 	}
-	
+
 	public function sendMessage()
 	{
-		
+
 	}
-	
-	
- 
+
+
+
 
 }
 

@@ -21,7 +21,7 @@ class Customer {
 
   }
 
-  public function getValues($username){
+  public function setValues($username){
     $query = "SELECT customerid FROM customers WHERE username == $username" ;
     $result = mysqli_query($db, $query);
     $this->customerid = $result;
@@ -37,5 +37,25 @@ class Customer {
     $query = "SELECT email FROM customers WHERE username == $username" ;
     $result = mysqli_query($db, $query);
     $this->email = $result;
+  }
+
+  public function getID(){
+    return $this->customerid;
+  }
+  public function getName(){
+    return $this->customerName;
+  }
+  public function getUserName(){
+    return $this->username;
+  }
+  public function getPassword(){
+    return $this->password;
+  }
+  public function getEmail(){
+    return $this->email;
+  }
+
+  public function makeJob($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate){
+    Job $job = new Job($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate)
   }
 ?>

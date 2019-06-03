@@ -21,7 +21,7 @@
       $this->tradesmenid = $result;
     }
 
-    public function getValues($username){
+    public function setValues($username){
       $query = "SELECT tradesmenid FROM tradesmen WHERE username == $username" ;
       $result = mysqli_query($db, $query);
       $this->tradesmenid = $result;
@@ -37,5 +37,21 @@
       $query = "SELECT email FROM tradesmen WHERE username == $username" ;
       $result = mysqli_query($db, $query);
       $this->email = $result;
+    }
+
+    public function getID(){
+      return $this->tradesmenid;
+    }
+    public function getName(){
+      return $this->tradesmenName;
+    }
+    public function getUserName(){
+      return $this->username;
+    }
+    public function getPassword(){
+      return $this->password;
+    }
+    public function getEmail(){
+      return $this->email;
     }
   ?>

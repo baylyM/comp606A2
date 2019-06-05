@@ -56,6 +56,7 @@
     }
 
     public function makeEstimate($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate){
-      Estimate $estimate = new Estimate($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate)
+      Estimate ($estimate = new Estimate($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate));
     }
+  }
   ?>

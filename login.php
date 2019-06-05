@@ -44,7 +44,7 @@
   	</div>
     <p>
       <!--changes to Sign In page-->
-  		Create Customer Account <a href="customerForm.php">Login</a> Create Tradesmen Account <a href="tradesmenForm.php">Login</a>
+  		<a href="customerForm.php">Create Customer Account </a>  <a href="tradesmenForm.php">Create Tradesmen Account </a>
   	</p>
   </form>
 </body>

@@ -13,7 +13,7 @@
   	<h2>Create Login</h2>
   </div>
   <!--form-->
-  <form method="post" action="booking.php">
+  <form method="post" action="tradesmenForm.php">
     <!--tells form to include errors.php
         which is empty and invisible until
         form is unsuccessfully submitted-->

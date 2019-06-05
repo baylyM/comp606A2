@@ -24,7 +24,6 @@ that customers can lookat-->
   <div class="header">
   	<h2>Home Page</h2>
     <p> <a href="index.php?logout='1'">Logout</a> </p>
-    <a href="booking.php">All Jobs</a>
   </div>
   <div class="content">
     	<!-- notification message -->

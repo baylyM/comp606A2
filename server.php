@@ -1,7 +1,8 @@
 <?php
-session_start();
 include("customerObject.php");
 include("tradesmenObject.php");
+include("estimate.php");
+include("job.php");
 // initiates variables
 $userid = "";
 $name = "";
@@ -37,15 +38,15 @@ if (isset($_POST['create_customer'])) {
   $namecheck = mysqli_fetch_assoc($result);
 
   if ($namecheck) { // if appointment exists
-    if ($namecheck['username'] === $username) {
+    if ($namecheck == $username) {
       array_push($errors, "Username Allready Taken");
     }
   }
 
   // registers user if there are no errors
   if (count($errors) == 0) {
-    $password = $password_1
-  	Customer $customer = new Customer($name, $username, $password, $email)
+    $password = $password_1;
+  	$customer = new Customer($name, $username, $password, $email);
   }
 }
 
@@ -80,8 +81,8 @@ if (isset($_POST['create_tradesmen'])) {
 
   // registers user if there are no errors
   if (count($errors) == 0) {
-    $password = $password_1
-  	Tradesmen $tradesman = new Tradesmen($name, $username, $password, $email)
+    $password = $password_1;
+  	Tradesmen ($tradesman = new Tradesmen($name, $username, $password, $email));
   }
 }
 // this code is for logging(loging?) in
@@ -113,8 +114,7 @@ if (isset($_POST['login_user'])) {
   	  $_SESSION['success'] = "You are now logged in";
       $customer.setValues($username);
   	  header('location: index.php');
-  	}elseif{
-      if($accountType = "Tradesmen")
+  	}elseif($accountType = "Tradesmen"){;
     	$query = "SELECT * FROM tradesmen WHERE username='$username' AND password='$password'";
     	$results = mysqli_query($db, $query);
     	if (mysqli_num_rows($results) == 1) {
@@ -136,8 +136,32 @@ if (isset($_POST['create_job'])) {
   $location = mysqli_real_escape_string($db, $_POST['location']);
   $description = mysqli_real_escape_string($db, $_POST['description']);
   $expectecost = mysqli_real_escape_string($db, $_POST['username']);
-  $password = mysqli_real_escape_string($db, $_POST['password']);
-  $accountType = mysqli_real_escape_string($db, $_POST['accountType']);
+  $startdate = mysqli_real_escape_string($db, $_POST['startdate']);
+  $enddate = mysqli_real_escape_string($db, $_POST['enddate']);
+
+  if (empty($jobname)) {
+  	array_push($errors, "Jobname is required");
+  }
+
+  if (empty($location)) {
+  	array_push($errors, "Location is required");
+  }
+
+  if (empty($description)) {
+  	array_push($errors, "Description is required");
+  }
+
+  if (empty($expectedcost)) {
+  	array_push($errors, "Expected Cost is required");
+  }
+
+  if (empty($startdate)) {
+  	array_push($errors, "Start Date is required");
+  }
+
+  if (empty($username)) {
+  	array_push($errors, "Username is required");
+  }
 }
 
 if (isset($_POST['create_estimate'])) {

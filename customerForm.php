@@ -10,10 +10,10 @@
 <body>
   <div class="header">
     <!--title of form-->
-  	<h2>Create Login</h2>
+  	<h2>Create Customer Account</h2>
   </div>
   <!--form-->
-  <form method="post" action="booking.php">
+  <form method="post" action="customerForm.php">
     <!--tells form to include errors.php
         which is empty and invisible until
         form is unsuccessfully submitted-->
@@ -43,11 +43,11 @@
   	</div>
   	<div class="input-group">
       <!--Submits form values-->
-  	  <button type="submit" class="btn" name="create_customer">Create User</button>
+  	  <button type="submit" class="btn" name="create_customer">Create Account</button>
   	</div>
   	<p>
       <!--changes to Sign In page-->
-  		Want to Login <a href="login.php">Login</a>
+  		Want to Login <a href="login.php"></a>
   	</p>
     <p>
       <!--changes to Sign In page-->

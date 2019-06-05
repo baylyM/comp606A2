@@ -14,7 +14,7 @@ class Job {
   private $accepted;
 
   public function __construct($customerid, $jobName,$location,$description,$expextedcost,$startdate,$enddate ){
-    $this->customerid = $customerid
+    $this->customerid = $customerid;
     $this->jobname = $jobname;
     $this->location= $location;
 	 $this->description= $description;

@@ -56,6 +56,7 @@ class Customer {
   }
 
   public function makeJob($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate){
-    Job $job = new Job($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate)
+    Job ($job = new Job($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate));
   }
+}
 ?>

@@ -165,6 +165,24 @@ if (isset($_POST['create_job'])) {
 }
 
 if (isset($_POST['create_estimate'])) {
+	 $totalcost = mysqli_real_escape_string($db, $_POST['totalcost']);
+  $labourcost = mysqli_real_escape_string($db, $_POST['labourcost']);
+  $materialcost = mysqli_real_escape_string($db, $_POST['materialcost']);
+  $transportcost = mysqli_real_escape_string($db, $_POST['transportcost']);
+  $expireddate = mysqli_real_escape_string($db, $_POST['expireddate']);
+
+  if (empty($totalcost)) { array_push($errors, "Total cost is required"); }
+  if (empty($labourcost)) { array_push($errors, "labourcost is required"); }
+  if (empty($materialcost)) { array_push($errors, "Material cost is required"); }
+  if (empty($transportcost)) { array_push($errors, "Transport cost is required"); }
+  if (empty($expireddate)) { array_push($errors, "Expired Date is required"); }
+
+  if (count($errors) == 0) {
+
+    Estimate  $estimate = new Job($totalcost, $labourcost, $materialcost, $transportcost,$expireddate)
+  }
+
+
 }
 
 ?>

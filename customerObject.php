@@ -11,14 +11,12 @@ class Customer {
     $this->username = $username;
     $this->password = $password;
     $this->email = $email;
+  }
 
+  public function saveUser(){
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
     $query = "INSERT INTO customers (customerName, username, password, email) VALUES('$customerName', '$username', '$password', '$email')";
   	mysqli_query($db, $query);
-    $query = "SELECT customerid FROM customers WHERE customerName == $this->customerName" ;
-    $result = mysqli_query($db, $query);
-    $this->customerid = $result;
-
   }
 
   public function setValues($username){
@@ -53,10 +51,6 @@ class Customer {
   }
   public function getEmail(){
     return $this->email;
-  }
-
-  public function makeJob($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate){
-    Job ($job = new Job($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate));
   }
 }
 ?>

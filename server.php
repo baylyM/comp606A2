@@ -33,8 +33,8 @@ if (isset($_POST['create_customer'])) {
   }
 
   // Checks if Username has allready been Taken
-  $appointment_check_query = "SELECT * FROM customers WHERE username='$username' LIMIT 1";
-  $result = mysqli_query($db, $appointment_check_query);
+  $namecheck_query = "SELECT * FROM customers WHERE username='$username' LIMIT 1";
+  $result = mysqli_query($db, $namecheck_query);
   $namecheck = mysqli_fetch_assoc($result);
 
   if ($namecheck) { // if appointment exists
@@ -47,6 +47,8 @@ if (isset($_POST['create_customer'])) {
   if (count($errors) == 0) {
     $password = $password_1;
   	$customer = new Customer($name, $username, $password, $email);
+    $customer.saveUser();
+    $customer.setValues($username);
   }
 }
 
@@ -69,12 +71,12 @@ if (isset($_POST['create_tradesmen'])) {
   }
 
   // Checks if Username has allready been Taken
-  $appointment_check_query = "SELECT * FROM tradesmen WHERE username='$username' LIMIT 1";
-  $result = mysqli_query($db, $appointment_check_query);
+  $namecheck_query = "SELECT * FROM tradesmen WHERE username='$username' LIMIT 1";
+  $result = mysqli_query($db, $namecheck_query);
   $namecheck = mysqli_fetch_assoc($result);
 
   if ($namecheck) { // if appointment exists
-    if ($namecheck['username'] === $username) {
+    if ($namecheck == $username) {
       array_push($errors, "Username Allready Taken");
     }
   }
@@ -82,7 +84,9 @@ if (isset($_POST['create_tradesmen'])) {
   // registers user if there are no errors
   if (count($errors) == 0) {
     $password = $password_1;
-  	Tradesmen ($tradesman = new Tradesmen($name, $username, $password, $email));
+    $tradesman = new Tradesmen($name, $username, $password, $email);
+    $tradesman.saveUser();
+    $tradesman.setValues($username);
   }
 }
 // this code is for logging(loging?) in
@@ -139,29 +143,33 @@ if (isset($_POST['create_job'])) {
   $startdate = mysqli_real_escape_string($db, $_POST['startdate']);
   $enddate = mysqli_real_escape_string($db, $_POST['enddate']);
 
-  if (empty($jobname)) {
-  	array_push($errors, "Jobname is required");
+
+
+  if (empty($jobname)) {array_push($errors, "Jobname is required");}
+  if (empty($location)) {array_push($errors, "Location is required");}
+  if (empty($description)) {array_push($errors, "Description is required");}
+  if (empty($expectedcost)) {array_push($errors, "Expected Cost is required");}
+  if (empty($startdate)) {array_push($errors, "Start Date is required");}
+  if (empty($enddate)) {array_push($errors, "End Date is required");}
+
+
+  $namecheck_query = "SELECT * FROM jobs WHERE jobname='$jobname' LIMIT 1";
+  $result = mysqli_query($db, $namecheck_query);
+  $namecheck = mysqli_fetch_assoc($result);
+
+  if ($namecheck) { // if appointment exists
+    if ($namecheck == $jobname) {
+      array_push($errors, "Jobname Allready Taken");
+    }
   }
 
-  if (empty($location)) {
-  	array_push($errors, "Location is required");
+  if (count($errors) == 0) {
+    $customerid = $customer.getID();
+    $job = new Job($customerid, $jobname, $location, $description, $expectecost, $startdate, $enddate);
+    $job.saveJob();
+    $job.setValues($username);
   }
 
-  if (empty($description)) {
-  	array_push($errors, "Description is required");
-  }
-
-  if (empty($expectedcost)) {
-  	array_push($errors, "Expected Cost is required");
-  }
-
-  if (empty($startdate)) {
-  	array_push($errors, "Start Date is required");
-  }
-
-  if (empty($username)) {
-  	array_push($errors, "Username is required");
-  }
 }
 
 if (isset($_POST['create_estimate'])) {
@@ -178,8 +186,11 @@ if (isset($_POST['create_estimate'])) {
   if (empty($expireddate)) { array_push($errors, "Expired Date is required"); }
 
   if (count($errors) == 0) {
-
-    Estimate  $estimate = new Job($totalcost, $labourcost, $materialcost, $transportcost,$expireddate)
+    $tradesmenid = $tradesman.getID();
+    $jobid = $job.getID();
+    $estimate = new Estimate($tradesmenid, $jobid, $totalcost, $labourcost, $materialcost, $transportcost,$expireddate);
+    $estimate.saveEstimate();
+    $estimate.setValues($tradesmenid, $jobid);
   }
 
 

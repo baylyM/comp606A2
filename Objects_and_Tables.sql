@@ -55,7 +55,7 @@ email varchar(50)
 CREATE TABLE jobs(
 jobid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 customerid int,
-jobName varchar(100),
+jobname varchar(100),
 location varchar(100),
 description text,
 expectedcost decimal(4,2),
@@ -71,10 +71,10 @@ estimateid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 tradesmenid int,
 jobid int,
 totalcost decimal(4,2),
-laborcost decimal(4,2),
+labourcost decimal(4,2),
 materialscost decimal(4,2),
 transportcost decimal(4,2),
-expiredate date,
+expireddate date,
 accepted boolean
 )
 

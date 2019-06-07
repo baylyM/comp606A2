@@ -11,14 +11,13 @@
       $this->username = $username;
       $this->password = $password;
       $this->email = $email;
+    }
 
 
+    public function saveUser(){
       $db = mysqli_connect('localhost', 'root', '', 'safetrade');
       $query = "INSERT INTO tradesmen (tradesmenName, username, password, email) VALUES('$tradesmenName', '$username', '$password', '$email')";
     	mysqli_query($db, $query);
-      $query = "SELECT tradesmenid FROM tradesmen WHERE tradesmenName == $this->tradesmenName" ;
-      $result = mysqli_query($db, $query);
-      $this->tradesmenid = $result;
     }
 
     public function setValues($username){

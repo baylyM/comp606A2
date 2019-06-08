@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("customerObject.php");
 include("tradesmenObject.php");
 include("estimate.php");
@@ -9,6 +10,7 @@ $name = "";
 $username = "";
 $password = "";
 $email    = "";
+$jobname = "";
 $errors = array();
 
 // connects to the database
@@ -49,6 +51,9 @@ if (isset($_POST['create_customer'])) {
   	$customer = new Customer($name, $username, $password, $email);
     $customer.saveUser();
     $customer.setValues($username);
+    $_SESSION['username'] = $username;
+    $_SESSION['success'] = "You account has been created";
+    header('location: index.php');
   }
 }
 
@@ -87,6 +92,9 @@ if (isset($_POST['create_tradesmen'])) {
     $tradesman = new Tradesmen($name, $username, $password, $email);
     $tradesman.saveUser();
     $tradesman.setValues($username);
+    $_SESSION['username'] = $username;
+    $_SESSION['success'] = "You account has been created";
+    header('location: index.php');
   }
 }
 // this code is for logging(loging?) in

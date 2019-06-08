@@ -10,6 +10,7 @@ if (isset($_GET['logout'])) {
   unset($_SESSION['username']);
   header("location: login.php");
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -44,28 +45,26 @@ that customers can lookat-->
   <div class="table">
     <?php
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-    $result = mysqli_query($db,"SELECT jobname, location,description,expectedcost,startdate,enddate
-      FROM jobs");
+    $result = mysqli_query($db,"SELECT jobname, description,startdate FROM jobs");
 
     echo "<table border='1'>
     <tr>
     <th>Job Name</th>
-    <th>Location</th>
-	<th>Description</th>
-    <th>Expected Cost</th>
-	<th>Start Date</th>
-    <th>End Date</th>
+    <th>Description</th>
+    <th>Start Date</th>
+    <th></th>
     </tr>";
 
     while($row = mysqli_fetch_array($result))
     {
+      $jobname = $row['jobname'];
+      $description = $row['description'];
+      $startdate = $row['startdate'];
     echo "<tr>";
     echo "<td>" . $row['jobname'] . "</td>";
-    echo "<td>" . $row['location'] . "</td>";
-	echo "<td>" . $row['description'] . "</td>";
-    echo "<td>" . $row['expectedcost'] . "</td>";
-	echo "<td>" . $row['startdate'] . "</td>";
-    echo "<td>" . $row['enddate'] . "</td>";
+    echo "<td>" . $row['description'] . "</td>";
+    echo "<td>" . $row['startdate'] . "</td>";
+    echo "<td><button type=\"submit\" class=\"btn\" name=\"job_detail\">Read More</button></td>";
     echo "</tr>";
     }
     echo "</table>";

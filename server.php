@@ -5,12 +5,17 @@ include("tradesmenObject.php");
 include("estimate.php");
 include("job.php");
 // initiates variables
+$customer = new stdClass();
+$tradesman = new stdClass();
+$job = new stdClass();
+$estimate = new stdClass();
 $userid = "";
 $name = "";
 $username = "";
 $password = "";
 $email    = "";
 $jobname = "";
+$accounttype = "";
 $errors = array();
 
 // connects to the database
@@ -51,7 +56,9 @@ if (isset($_POST['create_customer'])) {
   	$customer = new Customer($name, $username, $password, $email);
     $customer.saveUser();
     $customer.setValues($username);
+    $_SESSION['customer'] = $customer
     $_SESSION['username'] = $username;
+    $_SESSION['accounttype'] = "Customer";
     $_SESSION['success'] = "You account has been created";
     header('location: index.php');
   }
@@ -92,7 +99,9 @@ if (isset($_POST['create_tradesmen'])) {
     $tradesman = new Tradesmen($name, $username, $password, $email);
     $tradesman.saveUser();
     $tradesman.setValues($username);
+    $_SESSION['tradesman'] = $tradesman
     $_SESSION['username'] = $username;
+    $_SESSION['accounttype'] = "Tradesman";
     $_SESSION['success'] = "You account has been created";
     header('location: index.php');
   }
@@ -124,7 +133,9 @@ if (isset($_POST['login_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
+      $_SESSION['accounttype'] = "Tradesman";
       $customer.setValues($username);
+      $_SESSION['customer'] = $customer;
   	  header('location: index.php');
   	}elseif($accountType = "Tradesmen"){;
     	$query = "SELECT * FROM tradesmen WHERE username='$username' AND password='$password'";
@@ -132,7 +143,9 @@ if (isset($_POST['login_user'])) {
     	if (mysqli_num_rows($results) == 1) {
     	  $_SESSION['username'] = $username;
     	  $_SESSION['success'] = "You are now logged in";
+        $_SESSION['accounttype'] = "Tradesman";
         $tradesman.setValues($username);
+        $_SESSION['tradesman'] = $tradesman;
     	  header('location: index.php');
       }
       else{
@@ -176,6 +189,8 @@ if (isset($_POST['create_job'])) {
     $job = new Job($customerid, $jobname, $location, $description, $expectecost, $startdate, $enddate);
     $job.saveJob();
     $job.setValues($username);
+    $_SESSION['job'] = $job;
+    header('index.php');
   }
 
 }
@@ -199,9 +214,18 @@ if (isset($_POST['create_estimate'])) {
     $estimate = new Estimate($tradesmenid, $jobid, $totalcost, $labourcost, $materialcost, $transportcost,$expireddate);
     $estimate.saveEstimate();
     $estimate.setValues($tradesmenid, $jobid);
+    $_SESSION['estimate'] = $estimate;
+    header('index.php');
   }
-
-
 }
+
+  if (isset($_POST['Read_More'])){
+    $jobname = mysqli_real_escape_string($db, $_POST['jobname']);
+   $description = mysqli_real_escape_string($db, $_POST['description']);
+   $startdate = mysqli_real_escape_string($db, $_POST['startdate']);
+
+   $_SESSION['jobname'] = $jobname;
+   header('jobInfo.php');
+  }
 
 ?>

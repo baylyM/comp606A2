@@ -64,9 +64,15 @@ that customers can lookat-->
     echo "<td>" . $row['jobname'] . "</td>";
     echo "<td>" . $row['description'] . "</td>";
     echo "<td>" . $row['startdate'] . "</td>";
-    echo "<td><button type=\"submit\" class=\"btn\" name=\"job_detail\">Read More</button></td>";
-    echo "</tr>";
+    echo "<td><form id= \"$jobDetail\" method=\"post\" action=\"index.php\">
+    <input name= \"jobname\"type=\"hidden\" value=\"$jobname\">
+    <input name=\"description\" type=\"hidden\" value=\"$description\">
+    <input name=\"startdate\" type=\"hidden\" value=\"$startdate\">
+    <input name=\"Read_More\" type=\"submit\" value=\"server.php\">
+    </form></td>
+    </tr>";
     }
+
     echo "</table>";
     ?>
   </div>

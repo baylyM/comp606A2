@@ -66,6 +66,10 @@ class Job {
     return $this->jobid;
   }
 
+  public function getCustID(){
+    return $this->customerid;
+  }
+
   public function getJobName(){
     return $this->jobname;
   }
@@ -75,6 +79,10 @@ class Job {
   }
    public function getDescription(){
     return $this->description;
+  }
+
+  public function getExpectedCost(){
+    return $this->expectedcost;
   }
 
   public function getStartDate(){

@@ -75,6 +75,11 @@ class Estimate {
     return $this->expireddate;
   }
 
+  public function accepted($accept){
+    $query = "UPDATE estimates SET accepted = '$accept' WHERE estimateid = '$this->estimateid'";
+    mysqli_query($db, $query);
+  }
+
 	public function closeEstimate()
 	{
 

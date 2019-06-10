@@ -82,7 +82,5 @@ CREATE TABLE message(
 messageid int,
 username varchar(20),
 jobid int,
-tradesmenid int,
-customerid int,
 message text
 )

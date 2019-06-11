@@ -1,5 +1,10 @@
 <?php
   session_start();
+  include("customerObject.php");
+  include("tradesmenObject.php");
+  include("estimate.php");
+  include("job.php");
+  include("server.php")
   $jobname = $_SESSION['jobname'];
   $job = $_SESSION['job'];
   $accounttype = $_SESSION['accountype'];
@@ -80,13 +85,12 @@ that customers can lookat-->
           $tradesmenid = $row['tradesmenid'];
           $jobid = $row['jobid'];
         echo "<tr>";
-        echo "<td>" . $row['jobname'] . "</td>";
-        echo "<td>" . $row['description'] . "</td>";
-        echo "<td>" . $row['startdate'] . "</td>";
-        echo "<td><form id= \"$jobDetail\" method=\"post\" action=\"index.php\">
+        echo "<td>" . $row['totalcost'] . "</td>";
+        echo "<td>" . $row['expireddate'] . "</td>";
+        echo "<td><form id= \"$jobDetail\" method=\"post\" action=\"jobinfo.php\">
         <input name= \"tradesmenid\"type=\"hidden\" value=\"$tradesmenid\">
         <input name=\"jobid\" type=\"hidden\" value=\"$jobid\">
-        <input name=\"acceptJob\" type=\"submit\" value=\"jobInfo.php\">
+        <input name=\"acceptJob\" type=\"submit\" value=\"server.php\">
         </form></td>
         </tr>";
         }
@@ -94,14 +98,39 @@ that customers can lookat-->
         echo "</table>";
         ?>
       </div>
-      <?php
-    }
-
-  }
 
 
+      <div class="table">
+        <?php
+        $db = mysqli_connect('localhost', 'root', '', 'safetrade');
+        $result = mysqli_query($db,"SELECT username, message FROM messages WHERE jobid = '$jobid'");
 
-  ?>
+        echo "<table border='1'>
+        <tr>
+        <th>Username</th>
+        <th></th>
+        </tr>";
+
+        while($row = mysqli_fetch_array($result))
+        {
+        echo "<tr>";
+        echo "<td>" . $row['username'] . "</td>";
+        echo "<td>" . $row['message'] . "</td>";
+        echo "</tr>";
+        }
+
+        echo "</table>";
+        ?>
+      </div>
+
+      <form method="post" action="jobInfo.php">
+        <div class="input-group">
+          	<label>Send Message</label>
+          	<input type="text" name="name">
+        </div>
+      	<div class="input-group">
+      	  <button type="submit" class="btn" name="create_message">Send</button>
+      	</div>
 
 
 

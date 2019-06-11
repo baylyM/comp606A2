@@ -4,6 +4,16 @@
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
   }
+  session_start();
+  include("customerObject.php");
+  include("tradesmenObject.php");
+  include("estimate.php");
+  include("job.php");
+  include("server.php")
+
+  if (!isset($_SESSION['username'])) {
+    header('location: login.php');
+  }
 
 if (isset($_GET['logout'])) {
   session_destroy();
@@ -24,6 +34,7 @@ that customers can lookat-->
 <body>
   <div class="header">
   	<h2>Home Page</h2>
+    <p> <a href="jobform.php">Create Job</a> </p>
     <p> <a href="index.php?logout='1'">Logout</a> </p>
   </div>
   <div class="content">

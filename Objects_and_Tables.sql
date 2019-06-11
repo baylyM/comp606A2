@@ -78,7 +78,7 @@ expireddate date,
 accepted boolean
 )
 
-CREATE TABLE message(
+CREATE TABLE messages(
 messageid int,
 username varchar(20),
 jobid int,

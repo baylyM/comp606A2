@@ -5,10 +5,10 @@ include("tradesmenObject.php");
 include("estimate.php");
 include("job.php");
 // initiates variables
-$customer = new stdClass();
-$tradesman = new stdClass();
-$job = new stdClass();
-$estimate = new stdClass();
+$customer = new Customer();
+$tradesman = new Tradesmen();
+$job = new Job();
+$estimate = new Estimate();
 $userid = "";
 $name = "";
 $username = "";
@@ -209,7 +209,13 @@ if (isset($_POST['create_estimate'])) {
   if (empty($expireddate)) { array_push($errors, "Expired Date is required"); }
 
   if (count($errors) == 0) {
+    $tradesman = $_SESSION['tradesman'];
+    $tradesman = $tradesman.getID();
+    $tradesman.setValues();
     $tradesmenid = $tradesman.getID();
+    $job = $_SESSION['job'];
+    $job = $job.getID();
+    $job.setValues();
     $jobid = $job.getID();
     $estimate = new Estimate($tradesmenid, $jobid, $totalcost, $labourcost, $materialcost, $transportcost,$expireddate);
     $estimate.saveEstimate();
@@ -225,6 +231,16 @@ if (isset($_POST['create_estimate'])) {
    $startdate = mysqli_real_escape_string($db, $_POST['startdate']);
 
    $_SESSION['jobname'] = $jobname;
+   header('jobInfo.php');
+  }
+
+  if (isset($_POST['acceptJob'])){
+    $tradesmenid = mysqli_real_escape_string($db, $_POST['tradesmenid']);
+   $jobid = mysqli_real_escape_string($db, $_POST['jobid']);
+
+   $estimate.setValues($tradesmenid, $jobid);
+   $estimate.accepted();
+   $_SESSION['success'] = "Estimate Accepted";
    header('jobInfo.php');
   }
 

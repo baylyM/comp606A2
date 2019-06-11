@@ -56,7 +56,7 @@ if (isset($_POST['create_customer'])) {
   	$customer = new Customer($name, $username, $password, $email);
     $customer.saveUser();
     $customer.setValues($username);
-    $_SESSION['customer'] = $customer
+    $_SESSION['customer'] = $customer;
     $_SESSION['username'] = $username;
     $_SESSION['accounttype'] = "Customer";
     $_SESSION['success'] = "You account has been created";
@@ -99,7 +99,7 @@ if (isset($_POST['create_tradesmen'])) {
     $tradesman = new Tradesmen($name, $username, $password, $email);
     $tradesman.saveUser();
     $tradesman.setValues($username);
-    $_SESSION['tradesman'] = $tradesman
+    $_SESSION['tradesman'] = $tradesman;
     $_SESSION['username'] = $username;
     $_SESSION['accounttype'] = "Tradesman";
     $_SESSION['success'] = "You account has been created";

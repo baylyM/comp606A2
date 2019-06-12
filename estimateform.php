@@ -1,8 +1,4 @@
-<?php
-if (!isset($_SESSION['username'])) {
-    $_SESSION['msg'] = "You must log in first";
-    header('location: login.php');
-  }
+<?php include("server.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +27,7 @@ if (!isset($_SESSION['username'])) {
   	</div>
 	<div class="input-group">
   		<label>Labour Cost</label>
-  		<input type="number" name="laborcost">
+  		<input type="number" name="labourcost">
   	</div>
 
 	<div class="input-group">
@@ -51,10 +47,12 @@ if (!isset($_SESSION['username'])) {
 
   	<div class="input-group">
       <!--Submits form values-->
-  		<button type="submit" class="btn" name="create_estimate">Submit Estimate</button>
-
-      <button type=submit  class="btn"><a href="index.php">Back to Home page</a></button>
+  		<button type="submit" class="btn" name="create_estimate">Submit Estimate</button
   	</div>
+    <p>
+      <!--changes to Sign In page-->
+      <a href="index.php">Home Page</a>
+    </p>
   </form>
 </body>
 </html>

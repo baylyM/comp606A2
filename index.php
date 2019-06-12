@@ -1,19 +1,15 @@
 <?php
   session_start();
-  require_once("customerObject.php");
-  include_once("tradesmenObject.php");
-  include_once("estimate.php");
-  include_once("job.php");
   include("server.php");
   if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
   }
   if (isset($_GET['logout'])) {
-  session_destroy();
-  unset($_SESSION['username']);
-  header("location: login.php");
-}
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: login.php");
+  }
 
 ?>
 
@@ -69,11 +65,9 @@ that customers can lookat-->
     echo "<td>" . $row['jobname'] . "</td>";
     echo "<td>" . $row['description'] . "</td>";
     echo "<td>" . $row['startdate'] . "</td>";
-    echo "<td><form id= \"$jobDetail\" method=\"post\" action=\"index.php\">
+    echo "<td><form id= \"jobDetail\" method=\"post\" action=\"index.php\">
     <input name= \"jobname\"type=\"hidden\" value=\"$jobname\">
-    <input name=\"description\" type=\"hidden\" value=\"$description\">
-    <input name=\"startdate\" type=\"hidden\" value=\"$startdate\">
-    <input name=\"Read_More\" type=\"submit\" value=\"server.php\">
+    <input type=\"submit\" name=\"readmore\" value=\"Read More\">
     </form></td>
     </tr>";
     }

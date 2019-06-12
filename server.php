@@ -9,6 +9,12 @@ $customer =  new Customer('', '' ,'', '');
 $tradesman = new Tradesmen('', '', '', '');
 $job = new Job('','','','','','','');
 $estimate = new Estimate('','','','','','','');
+$location = "";
+$description = "";
+$expectedcost = "";
+$startdate = "";
+$enddate = "";
+$customerid = "";
 $userid = "";
 $name = "";
 $username = "";
@@ -57,6 +63,8 @@ if (isset($_POST['create_customer'])) {
   	$customer = new Customer($name, $username, $password, $email);
     $customer->saveUser();
     $customer->setValues($username);
+    $customer.saveUser();
+    $customer.setValues($username);
     $_SESSION['customer'] = $customer;
     $_SESSION['username'] = $username;
     $_SESSION['accounttype'] = "Customer";
@@ -100,6 +108,8 @@ if (isset($_POST['create_tradesmen'])) {
     $tradesman = new Tradesmen($name, $username, $password, $email);
     $tradesman->saveUser();
     $tradesman->setValues($username);
+    $tradesman.saveUser();
+    $tradesman.setValues($username);
     $_SESSION['tradesman'] = $tradesman;
     $_SESSION['username'] = $username;
     $_SESSION['accounttype'] = "Tradesman";
@@ -175,14 +185,18 @@ if (isset($_POST['create_job'])) {
   if (empty($enddate)) {array_push($errors, "End Date is required");}
 
   if (count($errors) == 0) {
+    $_SESSION['location'] = $location;
+    $_SESSION['description'] = $description;
+    $_SESSION['expectedcost'] = $expectedcost;
+    $_SESSION['startdate'] = $startdate;
+    $_SESSION['enddate'] = $enddate;
     $username = $_SESSION['username'];
     $customer->setValues($username);
     $customerid = $customer->getID();
     $job = new Job($customerid, $jobname, $location, $description, $expectedcost, $startdate, $enddate);
     $job->saveJob();
     $job->setValues($jobname);
-    $_SESSION['job'] = $job;
-    header('index.php');
+    header('location: index.php');
   }
 
 }
@@ -201,29 +215,21 @@ if (isset($_POST['create_estimate'])) {
   if (empty($expireddate)) { array_push($errors, "Expired Date is required"); }
 
   if (count($errors) == 0) {
-    $tradesman = $_SESSION['tradesman'];
-    $tradesman = $tradesman->getID();
-    $tradesman->setValues();
-    $tradesmenid = $tradesman->getID();
-    $job = $_SESSION['job'];
-    $job = $job->getID();
-    $job->setValues();
-    $jobid = $job->getID();
+    $tradesmenid = "1";
+    $jobid = "1";
     $estimate = new Estimate($tradesmenid, $jobid, $totalcost, $labourcost, $materialcost, $transportcost,$expireddate);
-    $estimate->saveEstimate();
+    $query = "INSERT INTO estimates (tradesmenid, jobid, totalcost, labourcost, materialscost, transportcost, expireddate) VALUES('$tradesmenid', '$jobid','$totalcost', '$labourcost','$materialcost','$transportcost','$expireddate')";
+    mysqli_query($db, $query);
     $estimate->setValues($tradesmenid, $jobid);
     $_SESSION['estimate'] = $estimate;
-    header('index.php');
+    header('location: jobInfo.php');
   }
 }
 
-  if (isset($_POST['Read_More'])){
+  if (isset($_POST['readmore'])){
     $jobname = mysqli_real_escape_string($db, $_POST['jobname']);
-   $description = mysqli_real_escape_string($db, $_POST['description']);
-   $startdate = mysqli_real_escape_string($db, $_POST['startdate']);
-
    $_SESSION['jobname'] = $jobname;
-   header('jobInfo.php');
+   header('location: jobInfo.php');
   }
 
   if (isset($_POST['acceptJob'])){
@@ -233,7 +239,17 @@ if (isset($_POST['create_estimate'])) {
    $estimate->setValues($tradesmenid, $jobid);
    $estimate->accepted();
    $_SESSION['success'] = "Estimate Accepted";
-   header('jobInfo.php');
+   header('location: jobInfo.php');
   }
+
+  if (isset($_POST['create_message'])){
+    $message = mysqli_real_escape_string($db, $_POST['message']);
+    $username = $_SESSION['username'];
+    $query = "INSERT INTO messages (message, username) VALUES('$message', '$username')";
+    mysqli_query($db, $query);
+   $_SESSION['success'] = "Estimate Accepted";
+   header('location: jobInfo.php');
+  }
+
 
 ?>

@@ -1,5 +1,4 @@
 <?php
-
 class Estimate {
 
   private $estimateid;
@@ -14,6 +13,8 @@ class Estimate {
 
 
   public function __construct($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate){
+    $this->tradesmenid = $tradesmenid;
+    $this->jobid = $jobid;
     $this->totalcost = $totalcost;
     $this->labourcost= $labourcost;
     $this->materialcost= $materialcost;

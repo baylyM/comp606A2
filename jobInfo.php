@@ -1,22 +1,17 @@
 <?php
   session_start();
-  include("customerObject.php");
-  include("tradesmenObject.php");
-  include("estimate.php");
-  include("job.php");
-  include("server.php")
+  include("server.php");
   $jobname = $_SESSION['jobname'];
-  $job = $_SESSION['job'];
-  $accounttype = $_SESSION['accountype'];
+  $job = new Job('','','','','','','');
   $username = $_SESSION['username'];
   $job = $job->setValues($jobname);
-  $jobid = $job->getID();
-  $location = $job->getLocation();
-  $description = $job->getDescription();
-  $expectedcost = $job->getExpectedCost();
-  $startdate = $job->getStartDate();
-  $enddate = $job->getEndDate();
-  $customerid = $job->getCustID();
+  $jobid = "1";
+  $location = $_SESSION['location'];
+  $description = $_SESSION['description'];
+  $expectedcost = $_SESSION['expectedcost'];
+  $startdate = $_SESSION['startdate'];
+  $enddate = $_SESSION['enddate'];
+  $customerid = "1";
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +25,9 @@ that customers can lookat-->
 <body>
   <div class="header">
   	<h1>
-    <span><a href="index.php">Home</a></span></h1>
-    <p> <a href="estimateform.php">Create Estimate</a> </p>
+      <a href="index.php">Home</a></h1>
+      <a href="estimateform.php">Create Estimate</a>
+    </h1>
   </div>
   <div class="content">
     	<!-- notification message -->
@@ -70,7 +66,7 @@ that customers can lookat-->
       <div class="table">
         <?php
         $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-        $result = mysqli_query($db,"SELECT tradesmenid, jobid, totalcost, expireddate FROM estimates WHERE jobid = '$jobid'");
+        $result = mysqli_query($db,"SELECT tradesmenid, jobid, totalcost, expireddate FROM estimates");
 
         echo "<table border='1'>
         <tr>
@@ -87,10 +83,10 @@ that customers can lookat-->
         echo "<tr>";
         echo "<td>" . $row['totalcost'] . "</td>";
         echo "<td>" . $row['expireddate'] . "</td>";
-        echo "<td><form id= \"$jobDetail\" method=\"post\" action=\"jobinfo.php\">
+        echo "<td><form id= \"estimateDetail\" method=\"post\" action=\"jobinfo.php\">
         <input name= \"tradesmenid\"type=\"hidden\" value=\"$tradesmenid\">
         <input name=\"jobid\" type=\"hidden\" value=\"$jobid\">
-        <input name=\"acceptJob\" type=\"submit\" value=\"server.php\">
+        <input name=\"acceptJob\" type=\"submit\" value=\"Accept Estimate\">
         </form></td>
         </tr>";
         }
@@ -103,11 +99,12 @@ that customers can lookat-->
       <div class="table">
         <?php
         $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-        $result = mysqli_query($db,"SELECT username, message FROM messages WHERE jobid = '$jobid'");
+        $result = mysqli_query($db,"SELECT username, message FROM messages");
 
         echo "<table border='1'>
         <tr>
         <th>Username</th>
+        <th>Message</th>
         <th></th>
         </tr>";
 
@@ -126,7 +123,7 @@ that customers can lookat-->
       <form method="post" action="jobInfo.php">
         <div class="input-group">
           	<label>Send Message</label>
-          	<input type="text" name="name">
+          	<input type="text" name="message">
         </div>
       	<div class="input-group">
       	  <button type="submit" class="btn" name="create_message">Send</button>

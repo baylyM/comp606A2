@@ -188,7 +188,7 @@ if (isset($_POST['create_job'])) {
     $customerid = $customer.getID();
     $job = new Job($customerid, $jobname, $location, $description, $expectecost, $startdate, $enddate);
     $job.saveJob();
-    $job.setValues($username);
+   
     $_SESSION['job'] = $job;
     header('index.php');
   }

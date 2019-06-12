@@ -16,7 +16,7 @@
 
     public function saveUser(){
       $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-      $query = "INSERT INTO tradesmen (tradesmenName, username, password, email) VALUES('$tradesmenName', '$username', '$password', '$email')";
+      $query = "INSERT INTO tradesmen (tradesmenName, username, password, email) VALUES('$this->tradesmenName', '$this->username', '$this->password', '$this->email')";
     	mysqli_query($db, $query);
     }
 

@@ -63,8 +63,6 @@ if (isset($_POST['create_customer'])) {
   	$customer = new Customer($name, $username, $password, $email);
     $customer->saveUser();
     $customer->setValues($username);
-    $customer.saveUser();
-    $customer.setValues($username);
     $_SESSION['customer'] = $customer;
     $_SESSION['username'] = $username;
     $_SESSION['accounttype'] = "Customer";
@@ -108,8 +106,6 @@ if (isset($_POST['create_tradesmen'])) {
     $tradesman = new Tradesmen($name, $username, $password, $email);
     $tradesman->saveUser();
     $tradesman->setValues($username);
-    $tradesman.saveUser();
-    $tradesman.setValues($username);
     $_SESSION['tradesman'] = $tradesman;
     $_SESSION['username'] = $username;
     $_SESSION['accounttype'] = "Tradesman";

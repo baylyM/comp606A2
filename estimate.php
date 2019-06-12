@@ -27,7 +27,7 @@ class Estimate {
 
   public function saveEstimate(){
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-    $query = "INSERT INTO estimates (tradesmenid, jobid, totalcost, labourcost, materialcost, transportcost, expireddate) VALUES('$tradesmenid', '$jobid','$totalcost', '$labourcost','$materialcost','$transportcost','$expireddate')";
+    $query = "INSERT INTO estimates (tradesmenid, jobid, totalcost, labourcost, materialcost, transportcost, expireddate) VALUES('$this->tradesmenid', '$this->jobid','$this->totalcost', '$this->labourcost','$this->materialcost','$this->transportcost','$this->expireddate')";
     mysqli_query($db, $query);
   }
 

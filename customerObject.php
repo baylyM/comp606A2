@@ -19,7 +19,7 @@ class Customer {
 
   public function saveUser(){
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-    $query = "INSERT INTO customers (customerName, username, password, email) VALUES('$customerName', '$username', '$password', '$email')";
+    $query = "INSERT INTO customers (customerName, username, password, email) VALUES('$this->customerName', '$this->username', '$this->password', '$this->email')";
   	mysqli_query($db, $query);
   }
 

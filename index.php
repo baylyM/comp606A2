@@ -58,11 +58,9 @@ that customers can lookat-->
 
     while($row = mysqli_fetch_array($result))
     {
-      $_SESSION['location'] = $row['location'];;
-      $_SESSION['description'] = $row['description'];
-      $_SESSION['expectedcost'] = $row['expectedcost'];
-      $_SESSION['startdate'] = $row['startdate'];
-      $_SESSION['enddate'] = $row['enddate'];
+      $location = $row['location'];
+      $expectedcost = $row['expectedcost'];
+      $enddate = $row['enddate'];
       $jobname = $row['jobname'];
       $description = $row['description'];
       $startdate = $row['startdate'];
@@ -72,6 +70,11 @@ that customers can lookat-->
     echo "<td>" . $row['startdate'] . "</td>";
     echo "<td><form id= \"jobDetail\" method=\"post\" action=\"index.php\">
     <input name= \"jobname\"type=\"hidden\" value=\"$jobname\">
+    <input name= \"location\"type=\"hidden\" value=\"$location\">
+    <input name= \"description\"type=\"hidden\" value=\"$description\">
+    <input name= \"expectedcost\"type=\"hidden\" value=\"$expectedcost\">
+    <input name= \"startdate\"type=\"hidden\" value=\"$startdate\">
+    <input name= \"enddate\"type=\"hidden\" value=\"$enddate\">
     <input type=\"submit\" name=\"readmore\" value=\"Read More\">
     </form></td>
     </tr>";

@@ -194,11 +194,6 @@ if (isset($_POST['create_job'])) {
   }
 
   if (count($errors) == 0) {
-    $_SESSION['location'] = $location;
-    $_SESSION['description'] = $description;
-    $_SESSION['expectedcost'] = $expectedcost;
-    $_SESSION['startdate'] = $startdate;
-    $_SESSION['enddate'] = $enddate;
     $username = $_SESSION['username'];
     $customer->setValues($username);
     $customerid = $customer->getID();
@@ -237,7 +232,18 @@ if (isset($_POST['create_estimate'])) {
 
   if (isset($_POST['readmore'])){
     $jobname = mysqli_real_escape_string($db, $_POST['jobname']);
+    $location = mysqli_real_escape_string($db, $_POST['location']);
+    $description = mysqli_real_escape_string($db, $_POST['description']);
+    $expectedcost = mysqli_real_escape_string($db, $_POST['expectedcost']);
+    $startdate = mysqli_real_escape_string($db, $_POST['startdate']);
+    $enddate = mysqli_real_escape_string($db, $_POST['enddate']);
+
    $_SESSION['jobname'] = $jobname;
+   $_SESSION['location'] = $location;
+   $_SESSION['description'] = $description;
+   $_SESSION['expectedcost'] = $expectedcost;
+   $_SESSION['startdate'] = $startdate;
+   $_SESSION['enddate'] = $enddate;
    header('location: jobInfo.php');
   }
 

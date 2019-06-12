@@ -58,6 +58,11 @@ that customers can lookat-->
 
     while($row = mysqli_fetch_array($result))
     {
+      $_SESSION['location'] = $row['location'];;
+      $_SESSION['description'] = $row['description'];
+      $_SESSION['expectedcost'] = $row['expectedcost'];
+      $_SESSION['startdate'] = $row['startdate'];
+      $_SESSION['enddate'] = $row['enddate'];
       $jobname = $row['jobname'];
       $description = $row['description'];
       $startdate = $row['startdate'];

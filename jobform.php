@@ -1,4 +1,4 @@
-<?php ?>
+<?php include('server.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,11 +45,12 @@
   	</div>
 
   	<div class="input-group">
-      <!--Submits form values-->
-  		<button type="submit" class="btn" name="create_job">Submit Job</button>
-
-      <button type=submit  class="btn"><a href="index.php">Back to Home page</a></button>
+      <button type="submit" class="btn" name="create_job">Submit Job</button>
   	</div>
+    <p>
+      <!--changes to Sign In page-->
+      <a href="index.php">Home Page</a>
+    </p>
   </form>
 </body>
 </html>

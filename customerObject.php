@@ -13,6 +13,10 @@ class Customer {
     $this->email = $email;
   }
 
+   public function __destruct(){
+
+   }
+
   public function saveUser(){
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
     $query = "INSERT INTO customers (customerName, username, password, email) VALUES('$customerName', '$username', '$password', '$email')";
@@ -20,19 +24,20 @@ class Customer {
   }
 
   public function setValues($username){
-    $query = "SELECT customerid FROM customers WHERE username == $username" ;
+    $db = mysqli_connect('localhost', 'root', '', 'safetrade');
+    $query = "SELECT customerid FROM customers WHERE username == '$username'" ;
     $result = mysqli_query($db, $query);
     $this->customerid = $result;
-    $query = "SELECT customerName FROM customers WHERE username == $username" ;
+    $query = "SELECT customerName FROM customers WHERE username =='$username'" ;
     $result = mysqli_query($db, $query);
     $this->customerName = $result;
-    $query = "SELECT username FROM customers WHERE username == $username" ;
+    $query = "SELECT username FROM customers WHERE username == '$username'" ;
     $result = mysqli_query($db, $query);
     $this->username = $result;
-    $query = "SELECT password FROM customers WHERE username == $username" ;
+    $query = "SELECT password FROM customers WHERE username == '$username'" ;
     $result = mysqli_query($db, $query);
     $this->password = $result;
-    $query = "SELECT email FROM customers WHERE username == $username" ;
+    $query = "SELECT email FROM customers WHERE username == '$username'" ;
     $result = mysqli_query($db, $query);
     $this->email = $result;
   }

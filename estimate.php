@@ -21,6 +21,9 @@ class Estimate {
     $this->expireddate= $expireddate;
   }
 
+   public function __destruct(){
+   }
+
   public function saveEstimate(){
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
     $query = "INSERT INTO estimates (tradesmenid, jobid, totalcost, labourcost, materialcost, transportcost, expireddate) VALUES('$tradesmenid', '$jobid','$totalcost', '$labourcost','$materialcost','$transportcost','$expireddate')";

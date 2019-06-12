@@ -7,7 +7,7 @@
     private $email;
 
     public function __construct($tradesmenName, $username, $password, $email){
-      $this->tradesmenName = $customerName;
+      $this->tradesmenName = $tradesmenName;
       $this->username = $username;
       $this->password = $password;
       $this->email = $email;
@@ -52,10 +52,6 @@
     }
     public function getEmail(){
       return $this->email;
-    }
-
-    public function makeEstimate($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate){
-      Estimate ($estimate = new Estimate($tradesmenid, $jobid, $totalcost,$labourcost,$materialcost,$transportcost,$expireddate));
     }
   }
   ?>

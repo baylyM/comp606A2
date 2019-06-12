@@ -9,14 +9,14 @@
   $job = $_SESSION['job'];
   $accounttype = $_SESSION['accountype'];
   $username = $_SESSION['username'];
-  $job = $job.setValues($jobname);
-  $jobid = $job.getID();
-  $location = $job.getLocation();
-  $description = $job.getDescription();
-  $expectedcost = $job.getExpectedCost();
-  $startdate = $job.getStartDate();
-  $enddate = $job.getEndDate();
-  $customerid = $job.getCustID();
+  $job = $job->setValues($jobname);
+  $jobid = $job->getID();
+  $location = $job->getLocation();
+  $description = $job->getDescription();
+  $expectedcost = $job->getExpectedCost();
+  $startdate = $job->getStartDate();
+  $enddate = $job->getEndDate();
+  $customerid = $job->getCustID();
 ?>
 
 <!DOCTYPE html>

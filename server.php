@@ -134,7 +134,7 @@ if (isset($_POST['login_user'])) {
 
 // checks database for corresponding user and password
   if (count($errors) == 0) {
-    if($accountType = "Customer")
+    if($accountType = "Customer"){
   	$query = "SELECT * FROM customers WHERE username='$username' AND password='$password'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
@@ -144,7 +144,8 @@ if (isset($_POST['login_user'])) {
       $customer->setValues($username);
       $_SESSION['customer'] = $customer;
   	  header('location: index.php');
-  	}elseif($accountType = "Tradesmen"){;
+    }
+  	}elseif($accountType = "Tradesmen"){
     	$query = "SELECT * FROM tradesmen WHERE username='$username' AND password='$password'";
     	$results = mysqli_query($db, $query);
     	if (mysqli_num_rows($results) == 1) {
@@ -155,6 +156,7 @@ if (isset($_POST['login_user'])) {
         $_SESSION['tradesman'] = $tradesman;
     	  header('location: index.php');
       }
+    }
       else{
         array_push($errors, "Wrong username/password combination");
       }

@@ -22,19 +22,19 @@
 
     public function setValues($username){
       $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-      $query = "SELECT tradesmenid FROM tradesmen WHERE username == $username" ;
+      $query = "SELECT tradesmenid FROM tradesmen WHERE username == '$username'" ;
       $result = mysqli_query($db, $query);
       $this->tradesmenid = $result;
-      $query = "SELECT tradesmenName FROM tradesmen WHERE username == $username" ;
+      $query = "SELECT tradesmenName FROM tradesmen WHERE username == '$username'" ;
       $result = mysqli_query($db, $query);
       $this->tradesmenName = $result;
-      $query = "SELECT username FROM tradesmen WHERE username == $username" ;
+      $query = "SELECT username FROM tradesmen WHERE username == '$username'" ;
       $result = mysqli_query($db, $query);
       $this->username = $result;
-      $query = "SELECT password FROM tradesmen WHERE username == $username" ;
+      $query = "SELECT password FROM tradesmen WHERE username == '$username'" ;
       $result = mysqli_query($db, $query);
       $this->password = $result;
-      $query = "SELECT email FROM tradesmen WHERE username == $username" ;
+      $query = "SELECT email FROM tradesmen WHERE username == '$username'" ;
       $result = mysqli_query($db, $query);
       $this->email = $result;
     }

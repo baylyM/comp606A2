@@ -182,6 +182,17 @@ if (isset($_POST['create_job'])) {
   if (empty($startdate)) {array_push($errors, "Start Date is required");}
   if (empty($enddate)) {array_push($errors, "End Date is required");}
 
+
+  $namecheck_query = "SELECT * FROM jobs WHERE jobname='$jobname' LIMIT 1";
+  $result = mysqli_query($db, $namecheck_query);
+  $namecheck = mysqli_fetch_assoc($result);
+
+  if ($namecheck) { // if appointment exists
+    if ($namecheck == $jobname) {
+      array_push($errors, "Username Allready Taken");
+    }
+  }
+
   if (count($errors) == 0) {
     $_SESSION['location'] = $location;
     $_SESSION['description'] = $description;

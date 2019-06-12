@@ -33,31 +33,31 @@ class Estimate {
 
   public function setValues($tradesmenid, $jobid){
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-    $query = "SELECT estimateid FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT estimateid FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->estimateid = $result;
-    $query = "SELECT tradesmenid FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT tradesmenid FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->tradesmenid = $result;
-    $query = "SELECT jobid FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT jobid FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->jobid = $result;
-    $query = "SELECT totalcost FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT totalcost FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->totalcost = $result;
-    $query = "SELECT labourcost FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT labourcost FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->labourcost = $result;
-    $query = "SELECT materialcost FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT materialcost FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->materialcost = $result;
-    $query = "SELECT transportcost FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT transportcost FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->transportcost = $result;
-    $query = "SELECT expireddate FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT expireddate FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->expireddate = $result;
-    $query = "SELECT accepted FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
+    $query = "SELECT accepted FROM estimates WHERE tradesmenid == '$tradesmenid' AND jobid == '$jobid'" ;
     $result = mysqli_query($db, $query);
     $this->accepted = $result;
   }
@@ -81,7 +81,8 @@ class Estimate {
   }
 
   public function accepted(){
-    $query = "UPDATE estimates SET accepted = 'true' WHERE estimateid = '$this->estimateid'";
+    $db = mysqli_connect('localhost', 'root', '', 'safetrade');
+    $query = "UPDATE estimates SET accepted = 1 WHERE estimateid = '$this->estimateid'";
     mysqli_query($db, $query);
   }
 

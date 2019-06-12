@@ -32,6 +32,7 @@ class Estimate {
   }
 
   public function setValues($tradesmenid, $jobid){
+    $db = mysqli_connect('localhost', 'root', '', 'safetrade');
     $query = "SELECT estimateid FROM estimates WHERE tradesmenid == $tradesmenid AND jobid == $jobid" ;
     $result = mysqli_query($db, $query);
     $this->estimateid = $result;

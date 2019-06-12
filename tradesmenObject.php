@@ -21,6 +21,7 @@
     }
 
     public function setValues($username){
+      $db = mysqli_connect('localhost', 'root', '', 'safetrade');
       $query = "SELECT tradesmenid FROM tradesmen WHERE username == $username" ;
       $result = mysqli_query($db, $query);
       $this->tradesmenid = $result;

@@ -162,7 +162,7 @@ if (isset($_POST['login_user'])) {
       }
     }
   	}
-  }
+  
 
 
 if (isset($_POST['create_job'])) {

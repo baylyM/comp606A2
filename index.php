@@ -46,13 +46,14 @@ that customers can lookat-->
   <div class="table">
     <?php
     $db = mysqli_connect('localhost', 'root', '', 'safetrade');
-    $result = mysqli_query($db,"SELECT jobname, description,startdate FROM jobs");
+    $result = mysqli_query($db,"SELECT * FROM jobs");
 
     echo "<table border='1'>
     <tr>
     <th>Job Name</th>
     <th>Description</th>
     <th>Start Date</th>
+	<th>Details</th>
     <th></th>
     </tr>";
 

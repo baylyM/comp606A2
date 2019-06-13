@@ -42,24 +42,25 @@ that customers can lookat-->
         </div>
     	<?php endif ?>
   </div>
-  <div>
-    <h1 class="sectiontitle">LOCATION</h1>
-    <h2><?php echo $location?></h2>
+  <div class="sectiontitle">
+    <h1 >LOCATION</h1>
+	<h2><?php echo $location?></h2>
+    
   </div>
-  <div>
-    <h1 class="sectiontitle">DESCRIPTION</h1>
+  <div class="sectiontitle">
+    <h1>DESCRIPTION</h1>
     <h2><?php echo $description?></h2>
   </div>
-  <div>
-    <h1 class="sectiontitle">EXPECTED COST</h1>
+  <div class="sectiontitle">
+    <h1>EXPECTED COST</h1>
     <h2><?php echo $expectedcost?></h2>
   </div>
-  <div>
-    <h1 class="sectiontitle">START DATE</h1>
+  <div class="sectiontitle">
+    <h1>START DATE</h1>
     <h2><?php echo $startdate?></h2>
   </div>
-  <div>
-    <h1 class="sectiontitle">END DATE</h1>
+  <div class="sectiontitle">
+    <h1>END DATE</h1>
     <h2><?php echo $enddate?></h2>
   </div>
 
@@ -73,7 +74,7 @@ that customers can lookat-->
         <th>Total Cost</th>
         <th>Estimate Valid Till</th>
         <th>Accept?</th>
-        <th></th>
+        
         </tr>";
 
         while($row = mysqli_fetch_array($result))
@@ -83,7 +84,7 @@ that customers can lookat-->
         echo "<tr>";
         echo "<td>" . $row['totalcost'] . "</td>";
         echo "<td>" . $row['expireddate'] . "</td>";
-        echo "<td><form id= \"estimateDetail\" method=\"post\" action=\"jobinfo.php\">
+        echo "<td><table id= \"estimateDetail\" method=\"post\" action=\"jobinfo.php\">
         <input name= \"tradesmenid\"type=\"hidden\" value=\"$tradesmenid\">
         <input name=\"jobid\" type=\"hidden\" value=\"$jobid\">
         <input name=\"acceptJob\" type=\"submit\" value=\"Accept Estimate\">
@@ -105,7 +106,7 @@ that customers can lookat-->
         <tr>
         <th>Username</th>
         <th>Message</th>
-        <th></th>
+        
         </tr>";
 
         while($row = mysqli_fetch_array($result))
